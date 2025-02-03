@@ -1,11 +1,11 @@
 from datasets import load_dataset
 import os
 
-local_dir = 'spurge_data/{DATASET}/{SPLIT}'
+local_dir = 'spurge_data'
 
 for dataset in ['crop', 'context']:
     for split in ['train', 'test']:
-        formatted_dir = local_dir.format(SPLIT=split, DATASET=dataset)
+        formatted_dir = os.path.join(local_dir, dataset, split)
         os.makedirs(formatted_dir, exist_ok=True)
         
         data = load_dataset('mpg-ranch/leafy_spurge', dataset, split=split)
